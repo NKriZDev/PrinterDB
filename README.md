@@ -1,96 +1,100 @@
-PrinterDB (PySide6)
+**<h1>PrinterDB (PySide6)</h1>**
 
 A small Windows desktop app for tracking printer inventory, repairs, and user assignments using a shared Excel workbook as the database.
 
-Features
+**Features**
 
-Uses one .xlsx file with 3 sheets:
+- Uses one .xlsx file with 3 sheets:
 
-Data: inventory counts per model
+-> Data: inventory counts per model
 
-Logs: issue/repair/return history with Jalali dates
+-> Logs: issue/repair/return history with Jalali dates
 
-Lists: printer names, users, and user→printer mappings
+-> Lists: printer names, users, and user→printer mappings
 
-Three GUI tabs:
 
-Data (inventory + main actions)
+- Three GUI tabs:
 
-Logs
+-> Data (inventory + main actions)
 
-Manage (users & printer dropdowns)
+-> Logs
 
-Primary workflow: Replace & Send to Repair
+-> Manage (users & printer dropdowns)
 
-Select user → select a printer the user has → pick Jalali date
 
-Decrements Storage, increments Repair, logs actions
+- Primary workflow: Replace & Send to Repair
 
-Repair return workflow: move items from Repair back to Storage
+-> Select user → select a printer the user has → pick Jalali date
 
-Hover tooltips show users who own a model, quantities, and acquire dates
+-> Decrements Storage, increments Repair, logs actions
 
-Atomic Excel saving to prevent corruption (network-share safe)
+- Repair return workflow: move items from Repair back to Storage
 
-Requirements
+- Hover tooltips show users who own a model, quantities, and acquire dates
 
-Python 3.10+
+- Atomic Excel saving to prevent corruption (network-share safe)
 
-Packages:
 
-pip install PySide6 pandas openpyxl
 
-Run
-python PrinterDB.py
+**Requirements**
 
+- Python 3.10+
+
+- Packages:
+```pip install PySide6 pandas openpyxl```
+
+**Run**
+```python chatgpt.py```
 
 If the workbook doesn’t exist, the app creates it on first run.
 
-Excel Structure
 
-Sheet 1: Data
+**Excel Structure**
+
+Sheet 1: ``Data``
 Columns (exact):
-Row, Model, New in storage, Storage, Repair, Total, User
+``Row, Model, New in storage, Storage, Repair, Total, User``
 
-Sheet 2: Logs
+Sheet 2: ``Logs``
 Columns:
-Date (Jalali), Event, User, Model, Quantity, Notes
+``Date (Jalali), Event, User, Model, Quantity, Notes``
 
-Sheet 3: Lists
+Sheet 3: ``Lists``
 Columns:
-PrinterNames, Usernames, UserHasPrinters
+``PrinterNames, Usernames, UserHasPrinters``
 
-UserHasPrinters rows are:
-username|model
-Example: ali|HP 401 (one row per unit)
+``UserHasPrinters`` rows are:
+``username|model``
+Example: ``ali|HP 401`` (one row per unit)
 
-Network Workbook Location
+
+**Network Workbook Location**
 
 Set near the top of the script:
 
-NETWORK_DIR = r"\\192.168.20.15\DataCenter Office\IT"
-EXCEL_PATH = os.path.join(NETWORK_DIR, "printers.xlsx")
+``NETWORK_DIR = r"\\192.168.20.15\DataCenter Office\IT"``
+``EXCEL_PATH = os.path.join(NETWORK_DIR, "printers.xlsx")``
 
-Build a Windows .exe
-pip install pyinstaller
-pyinstaller --onefile --windowed PrinterDB.py
+**Build a Windows ``.exe``**
+``pip install pyinstaller
+pyinstaller --onefile --windowed chatgpt.py``
 
 
 Output:
-dist/PrinterDB.exe
+``dist/chatgpt.exe``
 
 If imports are missed:
 
-pyinstaller --onefile --windowed --hidden-import=openpyxl --hidden-import=pandas PrinterDB.py
+```pyinstaller --onefile --windowed --hidden-import=openpyxl --hidden-import=pandas chatgpt.py```
 
-Troubleshooting
+**Troubleshooting**
 
-Excel says file is corrupt: close Excel, delete the workbook, rerun the app. Atomic saves prevent future corruption.
+- Excel says file is corrupt: close Excel, delete the workbook, rerun the app. Atomic saves prevent future corruption.
 
-PermissionError on save (network): someone has the file open in Excel; close it and retry.
+- PermissionError on save (network): someone has the file open in Excel; close it and retry.
 
-AttributeError / missing methods: ensure methods are inside the correct class and properly indented.
+- AttributeError / missing methods: ensure methods are inside the correct class and properly indented.
 
-License
+**License**
 
 MIT
