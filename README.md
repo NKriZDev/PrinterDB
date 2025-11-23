@@ -41,7 +41,7 @@ Packages:
 pip install PySide6 pandas openpyxl
 
 Run
-python chatgpt.py
+python PrinterDB.py
 
 
 If the workbook doesn’t exist, the app creates it on first run.
@@ -73,15 +73,15 @@ EXCEL_PATH = os.path.join(NETWORK_DIR, "printers.xlsx")
 
 Build a Windows .exe
 pip install pyinstaller
-pyinstaller --onefile --windowed chatgpt.py
+pyinstaller --onefile --windowed PrinterDB.py
 
 
 Output:
-dist/chatgpt.exe
+dist/PrinterDB.exe
 
 If imports are missed:
 
-pyinstaller --onefile --windowed --hidden-import=openpyxl --hidden-import=pandas chatgpt.py
+pyinstaller --onefile --windowed --hidden-import=openpyxl --hidden-import=pandas PrinterDB.py
 
 Troubleshooting
 
