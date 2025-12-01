@@ -44,7 +44,7 @@ A small Windows desktop app for tracking printer inventory, repairs, and user as
 ```pip install PySide6 pandas openpyxl```
 
 **Run**
-```python chatgpt.py```
+```python PrinterDB.py```
 
 If the workbook doesn’t exist, the app creates it on first run.
 
@@ -77,15 +77,15 @@ Set near the top of the script:
 
 **Build a Windows ``.exe``**
 ``pip install pyinstaller
-pyinstaller --onefile --windowed chatgpt.py``
+pyinstaller --onefile --windowed PrinterDB.py``
 
 
 Output:
-``dist/chatgpt.exe``
+``dist/PrinterDB.exe``
 
 If imports are missed:
 
-```pyinstaller --onefile --windowed --hidden-import=openpyxl --hidden-import=pandas chatgpt.py```
+```pyinstaller --onefile --windowed --hidden-import=openpyxl --hidden-import=pandas PrinterDB.py```
 
 **Troubleshooting**
 
